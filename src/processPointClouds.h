@@ -18,6 +18,8 @@
 #include <ctime>
 #include <chrono>
 #include "render/box.h"
+#include "KDTree.h"
+
 
 template<typename PointT>
 class ProcessPointClouds {
@@ -46,5 +48,7 @@ public:
 
     std::vector<boost::filesystem::path> streamPcd(std::string dataPath);
   
+  private:        
+    void clusterHelper(int i, typename pcl::PointCloud<PointT>::Ptr cloud, KDTree* tree, float distanceTol, std::vector<bool> &processed, std::vector<int> &cluster);
 };
 #endif /* PROCESSPOINTCLOUDS_H_ */
