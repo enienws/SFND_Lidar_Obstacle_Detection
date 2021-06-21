@@ -37,7 +37,7 @@ struct KDTree
         }
         else
         {
-            if(depth % 2 == 0)
+            if(depth % 3 == 0)
             {
                 if(point.x < ((*node)->point.x)) 
                 {
@@ -48,9 +48,20 @@ struct KDTree
                     insertCore(&((*node)->right), depth+1, point, id);    
                 }
             }
-            else
+            else if(depth % 3 == 1)
             {
                 if(point.y < ((*node)->point.y)) 
+                {
+                    insertCore(&((*node)->left), depth+1, point, id);
+                }
+                else 
+                {
+                    insertCore(&((*node)->right), depth+1, point, id);    
+                }
+            }
+            else
+            {
+                if(point.z < ((*node)->point.z)) 
                 {
                     insertCore(&((*node)->left), depth+1, point, id);
                 }
